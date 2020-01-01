@@ -25,10 +25,13 @@ app.get("/", (req, res) => {
 
 //connect to DB
 mongoose
-  .connect(process.env.DB_CONNECTION, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-  })
+  .connect(
+    "mongodb+srv://admin:Password123_+@cluster0-nfqot.mongodb.net/test?retryWrites=true&w=majority",
+    {
+      useUnifiedTopology: true,
+      useNewUrlParser: true
+    }
+  )
   .then(() => console.log("DB Connected!"))
   .catch(err => {
     console.log(`DB Connection Error: ${err.message}`);
