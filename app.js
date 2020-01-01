@@ -2,15 +2,18 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-// const bodyParser = require("body-parser");
 require("dotenv/config");
-
 //import routes
 const postsRoute = require("./routes/posts");
+const cors = require("cors");
 
-//Body parser middleware
+//middleware
+//body parser
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
+
+//cors
+app.use(cors());
 
 //route middleware
 app.use("/posts", postsRoute);
@@ -19,7 +22,6 @@ app.use("/posts", postsRoute);
 app.get("/", (req, res) => {
   res.send("home");
 });
-
 
 //connect to DB
 mongoose
